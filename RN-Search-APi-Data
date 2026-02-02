@@ -37,22 +37,19 @@ export default function App() {
     fetchData();
   }
 
-  function handleSearch(text) {
+function handleSearch(text) {
   setInput(text);
-  if (text === '') {
-    setFilteredData(data); 
-    return;
-  }
-  const filtered = data.filter(item =>
-    item.title.toLowerCase().includes(text.toLowerCase())
-  );
+  
+const filtered = data.filter(item =>{
+  return item.title?.toLowerCase().includes(text)
+});
   setFilteredData(filtered);
 }
 
   return (
     <View style={styles.container}>
       <Text>Here is list</Text>
-      <TextInput style={styles.input} onChangeText={handleSearch} value={input} />
+      <TextInput style={styles.input} onChangeText={(text)=>handleSearch(text)} value={input} />
       {loading ? (
         <ActivityIndicator size="large" color="#00ff00" />
       ) : (
